@@ -32,7 +32,10 @@ jobs:
       - name: Build with Maven
         run: mvn clean install --batch-mode --update-snapshots verify
       ##List files##
-      - run: ls -ltr
+      - name: Listing file and present working directory
+        run: |
+          ls -ltr
+          pwd
      
             
         
