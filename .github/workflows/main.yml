@@ -48,9 +48,9 @@ jobs:
      steps:
      - uses: actions/checkout@v2
      - name: SonarCloud Scan
-       run: mvn -B sonar:sonar -Dsonar.projectKey=SamreenKhanumF_simple-java-maven-app -Dsonar.projectName=simple-java-maven-app -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=a6bb9a73dc70d91b387284c30f0ad720a3f63b93
+       run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=SamreenKhanumF_simple-java-maven-app
        #uses: sonarsource/sonarcloud-github-action@master
-       #env:
-        #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    
+       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    
         
