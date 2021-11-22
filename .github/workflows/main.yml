@@ -43,15 +43,30 @@ jobs:
           name: Jar File
           path: target/*.jar 
       ##Code Quality Check##
- SonarCloud:
-     runs-on: ubuntu-latest
-     steps:
-     - uses: actions/checkout@v2
-     - name: SonarCloud Scan
-       run: mvn -B sonar:sonar -Dsonar.projectKey=SamreenKhanumF_simple-java-maven-app -Dsonar.projectName=simple-java-maven-app -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=c9ba03744770a9974227d0441a920bb67cdfdb51
+ #SonarCloud:
+ #    runs-on: ubuntu-latest
+ #    steps:
+ #    - uses: actions/checkout@v2
+ #    - name: SonarCloud Scan
+ #      run: mvn -B sonar:sonar -Dsonar.projectKey=SamreenKhanumF_simple-java-maven-app -Dsonar.projectName=simple-java-maven-app -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=c9ba03744770a9974227d0441a920bb67cdfdb51
        #run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=SamreenKhanumF_simple-java-maven-app
        #uses: sonarsource/sonarcloud-github-action@master
-       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    
-        
+ #      env:      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=SamreenKhanumF_simple-java-maven-app      
