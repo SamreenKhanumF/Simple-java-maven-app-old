@@ -54,6 +54,13 @@ jobs:
        env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   
+        
+ Deploy-Dev:
+    runs-on: ubuntu-latest
+    needs: SonarCloud
+    steps:
+    - name: Status
+      run: echo ${{ job.status }}
  
  #       uses: actions/cache@v1
  #       with:
