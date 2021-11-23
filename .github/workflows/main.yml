@@ -57,9 +57,10 @@ jobs:
         ##Curl##
  Curl:
   runs-on: ubuntu-latest
+  needs: SonarCloud
   steps:
    - name: curl
-     run: curl -XGET 'https://sonarcloud.io/project/overview?id=SamreenKhanumF_simple-java-maven-app'  
+     run: curl -XGET -d 'Overall Status' 'https://sonarcloud.io/project/overview?id=SamreenKhanumF_simple-java-maven-app' 
  #Deploy-Dev:
  #   runs-on: ubuntu-latest
  #   needs: SonarCloud
