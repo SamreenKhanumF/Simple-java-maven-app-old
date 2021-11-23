@@ -60,7 +60,7 @@ jobs:
   needs: SonarCloud
   steps:
    - name: curl
-     run: echo ${{curl -XGET -d 'Bugs' 'https://sonarcloud.io/organizations/samreenkhanumf/projects'}}
+     run: curl -XGET -d 'Bugs' 'https://sonarcloud.io/organizations/samreenkhanumf/projects'
 #Deploy-Dev:
  #   runs-on: ubuntu-latest
  #   needs: SonarCloud
