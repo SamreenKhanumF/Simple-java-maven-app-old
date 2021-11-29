@@ -53,7 +53,26 @@ jobs:
        #uses: sonarsource/sonarcloud-github-action@master
        env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        ##JUnit##
+     - name: Test with Maven
+       run: mvn -B test --file pom.xml
+     - name: Generate JaCoCo Badge
+       uses: cicirello/jacoco-badge-generator@v2
+       with:          
+          jacoco-csv-file: target/site/jacoco/jacoco.csv
+          badges-directory: .github/JaCoCo
+          generate-coverage-badge: true
+          coverage-badge-filename: jacoco.svg
+          generate-branches-badge: false
+          branches-badge-filename: branches.svg
+          colors: '#4c1 #97ca00 #a4a61d #dfb317 #fe7d37 #e05d44'
+          intervals: 100 90 80 70 60 0
+          on-missing-report: fail
+          fail-if-coverage-less-than: 0
+          fail-if-branches-less-than: 0
+          fail-on-coverage-decrease: false
+          fail-on-branches-decrease: false
         ##Curl##
  Curl:
   runs-on: ubuntu-latest
