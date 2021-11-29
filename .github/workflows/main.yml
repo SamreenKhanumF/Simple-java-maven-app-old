@@ -55,7 +55,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   
         ##Curl##
- curl:
+ Curl:
   runs-on: ubuntu-latest
   needs: SonarCloud
   steps:
