@@ -37,11 +37,11 @@ jobs:
           ls -ltr
           pwd
       ##Publishing artifact##
-      - name: Upload Build artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Jar File
-          path: target/*.jar 
+#      - name: Upload Build artifact
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: Jar File
+#          path: target/*.jar 
           
       ##Code Quality Check#
 Deploy-Dev:
