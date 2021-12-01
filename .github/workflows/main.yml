@@ -42,7 +42,7 @@ jobs:
         with:
           name: Jar File
           path: target/*.jar 
-      ##Code Quality Check##
+      ##Code Quality Check#
  SonarCloud:
      runs-on: ubuntu-latest
      steps:
