@@ -6,7 +6,7 @@ jobs:
     name: A job to say hello
     steps:
       - uses: actions/checkout@v2
-      - id: foo
+      - id: gala
         uses: ./
         with:
           who-to-greet: 'Mona the Octocat'
