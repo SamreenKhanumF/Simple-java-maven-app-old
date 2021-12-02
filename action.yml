@@ -24,9 +24,12 @@ inputs:
     required: true
     default: 'World'
 outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+#  random-number:
+#    description: "Random number"
+#    value: ${{ steps.random-number-generator.outputs.random-id }}
+ Out:
+   description: "Testing"
+   
 runs:
   using: "composite"
   steps:
@@ -34,8 +37,8 @@ runs:
       shell: bash
     - run: echo Hello ${{ inputs.who-to-greet }}.
       shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
-      shell: bash
+#    - id: random-number-generator
+#      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+#      shell: bash
     - run: ${{ github.action_path }}/entrypoint.sh
       shell: bash  
