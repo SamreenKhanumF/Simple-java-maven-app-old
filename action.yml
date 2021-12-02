@@ -1,20 +1,19 @@
-name: 'Hello World'
-#description: 'Greet someone and record the time'
-#!/bin/sh -l
-#echo "Hello $1"
-#inputs:
-#  who-to-greet:  # id of input
-#    description: 'Who to greet'
-#    required: true
-#    default: 'World'
-#outputs:
-#  time: # id of output
-#    description: 'The time we greeted you'
+name: Action
+description: Test
+inputs:
+ user_name:
+   description: "Name"
+   required: true
+
+outputs:
+ Out:
+   description: "Testing O/P"
+ 
 runs:
-#  using: 'node12'
-#  main: 'index.js'
-mysqldatabase:
-    hostname: localhost
-    port: 3012
-    username: root
-    password: root
+ using: "composite"
+ steps:
+ - runs: |
+    chmod 777 ./entrypoint.sh
+    $GITHUB_ACTION_PATH/entrypoint.sh ${{input.user_name}}
+   shell: bash
+  
