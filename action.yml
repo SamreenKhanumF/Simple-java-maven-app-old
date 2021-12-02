@@ -1,7 +1,7 @@
-#name: 'Hello World'
+name: 'Hello World'
 #description: 'Greet someone and record the time'
 #!/bin/sh -l
-echo "Hello $1"
+#echo "Hello $1"
 #inputs:
 #  who-to-greet:  # id of input
 #    description: 'Who to greet'
