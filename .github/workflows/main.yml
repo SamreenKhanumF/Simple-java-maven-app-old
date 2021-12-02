@@ -44,7 +44,7 @@ jobs:
 #          path: target/*.jar 
           
       ##Code Quality Check#
-Sonar:
+ Sonar:
    runs-on: ubuntu-latest
    steps:
    #needs: SonarCloud
@@ -118,7 +118,7 @@ Sonar:
           files: target/surefire-reports/*.xml
         
         ##Curl##
-Curl:
+ Curl:
   runs-on: ubuntu-latest
   #needs: SonarCloud
   steps:
