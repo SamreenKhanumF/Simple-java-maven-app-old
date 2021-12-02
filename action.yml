@@ -1,7 +1,6 @@
-name: 'Hello World'
+#name: 'Hello World'
 #description: 'Greet someone and record the time'
 #!/bin/sh -l
-runs: chmod +x
 echo "Hello $1"
 #inputs:
 #  who-to-greet:  # id of input
@@ -14,3 +13,8 @@ echo "Hello $1"
 #runs:
 #  using: 'node12'
 #  main: 'index.js'
+mysqldatabase:
+    hostname: localhost
+    port: 3012
+    username: root
+    password: root
