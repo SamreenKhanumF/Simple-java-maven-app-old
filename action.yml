@@ -1,6 +1,6 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
-echo 'Hello!'
+run: echo "Hi"
 #inputs:
 #  who-to-greet:  # id of input
 #    description: 'Who to greet'
