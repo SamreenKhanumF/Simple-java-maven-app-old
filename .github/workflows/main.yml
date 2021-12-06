@@ -126,7 +126,7 @@ jobs:
      #run: curl -XGET 'https://sonarcloud.io/api/issues/search?componentKeys={SamreenKhanumF_simple-java-maven-app}&types=BUG,VULNERABILITY,SECURITY_HOTSPOT&severities=CRITICAL,BLOCKER'
      run: curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app' 
      #--header 'Authorization: Bearer c9ba03744770a9974227d0441a920bb67cdfdb51'
-#Deploy-Dev:
+#Deploy-Dev
  #   runs-on: ubuntu-latest
  #   needs: SonarCloud
  #   steps:
