@@ -1,4 +1,5 @@
 # This is a basic workflow to help you get started with Actions
+env:
 
 name: BasicPL
 
@@ -124,16 +125,32 @@ jobs:
   steps:
    - name: Curl
      #run: curl -XGET 'https://sonarcloud.io/api/issues/search?componentKeys={SamreenKhanumF_simple-java-maven-app}&types=BUG,VULNERABILITY,SECURITY_HOTSPOT&severities=CRITICAL,BLOCKER'
-     run: curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app' 
-
-   - name: fetch the json value
      run: |
-          responsejson=`cat $GITHUB_EVENT_PATH`
-          echo $responsejson
-          number=`echo $(jq -r '.coverage' <<< "$responsejson")`
-#         PRTitle=`echo $(jq -r '.pull_request.title' <<< "$githubjson")`
-#         PRUrl=`echo $(jq -r '.pull_request.html_url' <<< "$githubjson")`
-#         PRBody=`echo $(jq -r '.pull_request.body' <<< "$githubjson")`
+      curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app'
+      JSON.parse(response)
+      #alert(response.coverage);
+      echo "coverage= ${{ response.coverage }}"
+
+#   - name: fetch the json value
+#     run: 
+#      $.ajax({
+#        dataType:'json'
+#        url: "om/api",
+#        beforeSend: function(xhr) { 
+#      xhr.setRequestHeader("Authorization", "Basic " + btoa("username:password")); 
+#    },
+#    type: 'POST',
+#    dataType: 'json',
+#    contentType: 'application/json',
+#    processData: false,
+#    data: '{"foo":"bar"}',
+#    success: function (data) {
+#      alert(JSON.stringify(data));
+#    },
+ #   error: function(){
+ #     alert("Cannot get data");
+ #   }
+#});
      
      #--header 'Authorization: Bearer c9ba03744770a9974227d0441a920bb67cdfdb51'
 #Deploy-Dev
