@@ -1,5 +1,4 @@
 # This is a basic workflow to help you get started with Actions
-env:
 
 name: BasicPL
 
@@ -128,7 +127,6 @@ jobs:
      run: |
       curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app'
       JSON.parse(response)
-      #alert(response.coverage);
       echo "coverage= ${{ response.coverage }}"
 
 #   - name: fetch the json value
