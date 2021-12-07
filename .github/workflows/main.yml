@@ -126,9 +126,8 @@ jobs:
      #run: curl -XGET 'https://sonarcloud.io/api/issues/search?componentKeys={SamreenKhanumF_simple-java-maven-app}&types=BUG,VULNERABILITY,SECURITY_HOTSPOT&severities=CRITICAL,BLOCKER'
      run: |
       curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app'
-      JSON.parse(response)
-      echo "coverage= ${{ response.coverage }}"
-
+      jQuery.getJSON(https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app,[coverage])
+      
 #   - name: fetch the json value
 #     run: 
 #      $.ajax({
