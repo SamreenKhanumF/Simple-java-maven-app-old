@@ -131,26 +131,43 @@ jobs:
       
       while read jsonData ;
       do
-         Metric=$(jq -r '.metric' <<<$jsonData)
-         Value=$(jq -r '.value' <<<$jsonData)
-         echo "$Metric"
-         echo "$Value"
+         metric=$(jq -r '.metric' <<<$jsonData)
+         value=$(jq -r '.value' <<<$jsonData)
+         echo "$metric"
+         echo "$value"
       
-       if ["$Metric" == "coverage"];
+      if [ "$metric" == "coverage" ] ;
+      then
+       if [ "${value%.*}" -lt ${{env.Threshold_coverage }} ] ;
         then
-        if ["${Value%.*}" -lt ${{env.Threshold_coverage}}];
-          then
-            echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
-            echo "Actual ${Metric%.*} - ${Value%.*}"
-            echo "Sonar Coverage gate- Failed"
-            exit 1
-        else
-            echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
-            echo "Actual ${Metric%.*} - ${Value%.*}"
-            echo "Sonar Coverage gate- Pass"
-        fi
+          echo "Expected ${metric%.*} - ${{env.Threshold_coverage}}"
+          echo "Actual ${metric%.*} - ${value%.*}"
+          echo "Sonar code coverage Gate: Failed"
+          exit 1
+      else
+         echo "Expected ${metric%.*} - ${{env.COVERAGE_THRESHOLD}}"
+         echo "Actual ${metric%.*} - ${value%.*}"
+         echo "Sonar code coverage Gate: Passed"
        fi
-      done <<< $(jq -c '.component.measures[]' $PWD/File.json)
+      fi
+      done
+#       if ["$Metric" == "coverage"];
+#        then
+#        if ["${Value%.*}" -lt ${{env.Threshold_coverage}}];
+#          then
+#            echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
+#            echo "Actual ${Metric%.*} - ${Value%.*}"
+#            echo "Sonar Coverage gate- Failed"
+#            exit 1
+#        else
+#            echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
+#            echo "Actual ${Metric%.*} - ${Value%.*}"
+#            echo "Sonar Coverage gate- Pass"
+#        fi
+#       fi
+#      done 
+#<<< $(jq -c '.component.measures[]' $PWD/File.json)
+
 
 #      jQuery.getJSON(https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app,[coverage])
       
