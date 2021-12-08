@@ -127,7 +127,8 @@ jobs:
    - name: Curl
      #run: curl -XGET 'https://sonarcloud.io/api/issues/search?componentKeys={SamreenKhanumF_simple-java-maven-app}&types=BUG,VULNERABILITY,SECURITY_HOTSPOT&severities=CRITICAL,BLOCKER'
      run: |
-      curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app'
+      curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=SamreenKhanumF_simple-java-maven-app' > ./File.json
+      cat ./File.json
       
       while read jsonData;
       do
@@ -138,17 +139,17 @@ jobs:
       
       if ["$Metric" == "coverage"];
          then
-        if ["${Value%.*}" -lt ${{env.Threshold_coverage}}];
+         if ["${Value%.*}" -lt ${{env.Threshold_coverage}}];
           then
             echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
             echo "Actual ${Metric%.*} - ${Value%.*}"
             echo "Sonar Coverage gate- Failed"
             exit 1
-        else
+         else
             echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
             echo "Actual ${Metric%.*} - ${Value%.*}"
             echo "Sonar Coverage gate- Pass"
-        fi
+         fi
       fi
       done
 
