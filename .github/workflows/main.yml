@@ -150,7 +150,7 @@ jobs:
          echo "Sonar code coverage Gate: Passed"
        fi
       fi
-      done
+      done <<< $(jq -c '.component.measures[]' $PWD/File.json)
 #       if ["$Metric" == "coverage"];
 #        then
 #        if ["${Value%.*}" -lt ${{env.Threshold_coverage}}];
