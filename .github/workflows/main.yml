@@ -122,8 +122,7 @@ jobs:
         ##Curl##
  Curl:
   runs-on: ubuntu-latest
-  #needs: SonarClou
-  #shell : bash
+  needs: SonarCloud
   steps:
    - name: Curl
      #run: curl -XGET 'https://sonarcloud.io/api/issues/search?componentKeys={SamreenKhanumF_simple-java-maven-app}&types=BUG,VULNERABILITY,SECURITY_HOTSPOT&severities=CRITICAL,BLOCKER'
@@ -151,7 +150,7 @@ jobs:
             echo "Sonar Coverage gate- Pass"
         fi
        fi
-      done
+      done <<< $(jq -c '.component.measures[]' $PWD/File.json)
 
 #      jQuery.getJSON(https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app,[coverage])
       
