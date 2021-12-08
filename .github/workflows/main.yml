@@ -130,9 +130,9 @@ jobs:
       curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=SamreenKhanumF_simple-java-maven-app' > ./File.json
       
       while read jsonData;
-       do
-         Metric= $(jq -r '.metric' <<<$jsonData)
-         Value= $(jq -r '.value' <<<$jsonData)
+      do
+         Metric=$(jq -r '.metric' <<<$jsonData)
+         Value=$(jq -r '.value' <<<$jsonData)
          echo "$Metric"
          echo "$Value"
       
