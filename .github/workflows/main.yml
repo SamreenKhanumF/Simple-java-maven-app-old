@@ -123,7 +123,7 @@ jobs:
  Curl:
   runs-on: ubuntu-latest
   #needs: SonarClou
-  shell : bash
+  #shell : bash
   steps:
    - name: Curl
      #run: curl -XGET 'https://sonarcloud.io/api/issues/search?componentKeys={SamreenKhanumF_simple-java-maven-app}&types=BUG,VULNERABILITY,SECURITY_HOTSPOT&severities=CRITICAL,BLOCKER'
