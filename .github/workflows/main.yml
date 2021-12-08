@@ -130,28 +130,28 @@ jobs:
       curl --location --request GET 'https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=SamreenKhanumF_simple-java-maven-app' > ./File.json
       cat ./File.json
       
-      while read jsonData;
-      do
-         Metric= $(jq -r '.metric' <<<$jsonData)
-         Value= $(jq -r '.value' <<<$jsonData)
-         echo "$Metric"
-         echo "$Value"
+  #    while read jsonData;
+  #    do
+  #       Metric= $(jq -r '.metric' <<<$jsonData)
+  #       Value= $(jq -r '.value' <<<$jsonData)
+  #       echo "$Metric"
+  #       echo "$Value"
       
-      if ["$Metric" == "coverage"];
-         then
-         if ["${Value%.*}" -lt ${{env.Threshold_coverage}}];
-          then
-            echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
-            echo "Actual ${Metric%.*} - ${Value%.*}"
-            echo "Sonar Coverage gate- Failed"
-            exit 1
-         else
-            echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
-            echo "Actual ${Metric%.*} - ${Value%.*}"
-            echo "Sonar Coverage gate- Pass"
-         fi
-      fi
-      done
+  #    if ["$Metric" == "coverage"];
+  #       then
+#         if ["${Value%.*}" -lt ${{env.Threshold_coverage}}];
+#           then
+#             echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
+#             echo "Actual ${Metric%.*} - ${Value%.*}"
+#             echo "Sonar Coverage gate- Failed"
+#             exit 1
+#          else
+#             echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
+#             echo "Actual ${Metric%.*} - ${Value%.*}"
+#             echo "Sonar Coverage gate- Pass"
+#          fi
+#       fi
+#       done
 
 #      jQuery.getJSON(https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app,[coverage])
       
