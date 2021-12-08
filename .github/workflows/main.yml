@@ -1,5 +1,7 @@
 # This is a basic workflow to help you get started with Actions
-
+env:
+  Threshold_coverage: 100.0
+  
 name: BasicPL
 
 # Controls when the workflow will run
@@ -133,6 +135,21 @@ jobs:
          Value= $(jq -r '.value' <<<$jsonData)
          echo "$Metric"
          echo "$Value"
+      
+      if ["$Metric" == "coverage"];
+         then
+        if ["${Value%.*}" -lt ${{env.Threshold_coverage}}];
+          then
+            echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
+            echo "Actual ${Metric%.*} - ${Value%.*}"
+            echo "Sonar Coverage gate- Failed"
+            exit 1
+        else
+            echo "Expected ${Metric%.*} - ${{env.Threshold_coverage}}"
+            echo "Actual ${Metric%.*} - ${Value%.*}"
+            echo "Sonar Coverage gate- Pass"
+        fi
+      fi
       done
 
 #      jQuery.getJSON(https://sonarcloud.io/api/measures/component?metricKeys=code_smells,coverage,duplicated_lines_density,vulnerabilities,security_hotspots,critical_violations,bugs&component=IamAdonis_simple-java-maven-app,[coverage])
