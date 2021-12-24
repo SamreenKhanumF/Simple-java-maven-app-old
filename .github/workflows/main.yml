@@ -36,8 +36,12 @@ jobs:
       ##List files##
       - name: Listing files and present working directory
         run: |
-          ls -ltr
-          pwd
+             if [[-d "$workflows" ]];
+             then
+             echo "Already present"
+             else
+             ls -ltr
+             pwd
       ##Publishing artifact##
       - name: Upload Build artifact
         uses: actions/upload-artifact@v2
