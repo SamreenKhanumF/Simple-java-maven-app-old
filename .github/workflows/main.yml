@@ -36,8 +36,8 @@ jobs:
       ##List files##
       - name: Listing files and present working directory
         run: |
-             if [[-d "$workflows" ]];
-             then
+             if [[-d "$jenkins" ]];
+             then 
              echo "Already present"
              else
              ls -ltr
