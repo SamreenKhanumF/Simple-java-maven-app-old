@@ -36,7 +36,7 @@ jobs:
       ##List files##
       - name: Listing files and present working directory
         run: |
-             if [[-d "$jenkins" ]]; then
+             if [ -d "/home/runner/work/Simple-java-maven-app-old/Simple-java-maven-app-old/lib" ]; then
               echo "Already present"
              else
               ls -ltr
