@@ -36,12 +36,11 @@ jobs:
       ##List files##
       - name: Listing files and present working directory
         run: |
-             if [[-d "$jenkins" ]];
-             then 
-             echo "Already present"
+             if [[-d "$jenkins" ]]; then
+              echo "Already present"
              else
-             ls -ltr
-             pwd
+              ls -ltr
+              pwd
              fi
       ##Publishing artifact##
       - name: Upload Build artifact
