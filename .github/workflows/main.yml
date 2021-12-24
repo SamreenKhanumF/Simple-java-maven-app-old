@@ -42,6 +42,7 @@ jobs:
              else
              ls -ltr
              pwd
+             fi
       ##Publishing artifact##
       - name: Upload Build artifact
         uses: actions/upload-artifact@v2
